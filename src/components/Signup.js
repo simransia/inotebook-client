@@ -30,7 +30,7 @@ function SignUp(props) {
     const handleClick = async (e) => {
         const { email, name, password, cpassword } = credentials;
 
-        const response = await fetch("/api/auth/createuser", {
+        const response = await fetch("https://inotebook-server.onrender.com/api/auth/createuser", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
