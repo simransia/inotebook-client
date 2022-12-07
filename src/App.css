@@ -1,0 +1,52 @@
+body{
+  font-family: cursive;
+}
+
+.form{
+  max-width: 900px;
+  margin:0 auto;
+}
+.app{
+  background-image: url("./image/bg.png");
+  background-repeat: no-repeat;
+  background-size:cover; 
+  background-position:center;
+  min-height:100vh;
+
+}
+i{
+  cursor: pointer;
+  font-size:15px;
+}
+
+button{
+  cursor:pointer;
+}
+
+.last-para{
+  color:blue;
+  font-size: 12px;;
+}
+.error{
+  position: absolute;
+  color: red;
+  font-size: 13px;
+  right:5px;
+}
+
+.error i{
+  font-size: 13px;
+}
+
+.input-container{
+  position: relative;
+  width: 100%;
+}
+
+.input-container .view-password{
+  position:absolute;
+  bottom:9px;
+  right:20px;
+  color: #7f7f88;
+  font-size:18px;
+}
