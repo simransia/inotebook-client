@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { API_BASE_URL } from "../utils/constant";
 
 function SignUp(props) {
   const [credentials, setCredentials] = useState({
@@ -35,16 +36,13 @@ function SignUp(props) {
   const handleClick = async (e) => {
     const { email, name, password, cpassword } = credentials;
 
-    const response = await fetch(
-      "https://inotebook-server.onrender.com/api/auth/createuser",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, name, password, cpassword }),
-      }
-    );
+    const response = await fetch(`${API_BASE_URL}/api/auth/createuser`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, name, password, cpassword }),
+    });
     const json = await response.json();
     console.log(json);
 

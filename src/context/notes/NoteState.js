@@ -1,5 +1,6 @@
 import NoteContext from "./noteContext";
 import React, { useState } from "react";
+import { API_BASE_URL } from "../../utils/constant";
 
 const NoteState = (props) => {
   const notesInitial = [];
@@ -8,16 +9,13 @@ const NoteState = (props) => {
 
   //get all notes
   const getNote = async () => {
-    const response = await fetch(
-      "https://inotebook-server.onrender.com/api/notes/fetchallnotes",
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "auth-token": localStorage.getItem("token"),
-        },
-      }
-    );
+    const response = await fetch(`${API_BASE_URL}/api/notes/fetchallnotes`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": localStorage.getItem("token"),
+      },
+    });
 
     const json = await response.json();
     setnotes(json);
@@ -25,17 +23,14 @@ const NoteState = (props) => {
 
   //add a note
   const addNote = async (title, description, tag) => {
-    const response = await fetch(
-      "https://inotebook-server.onrender.com/api/notes/addnote",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "auth-token": localStorage.getItem("token"),
-        },
-        body: JSON.stringify({ title, description, tag }),
-      }
-    );
+    const response = await fetch(`${API_BASE_URL}/api/notes/addnote`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": localStorage.getItem("token"),
+      },
+      body: JSON.stringify({ title, description, tag }),
+    });
 
     const json = await response.json();
     if (json.user) {
@@ -48,16 +43,13 @@ const NoteState = (props) => {
   //delete a note
   const deleteNote = async (id) => {
     //a\Api call to delete
-    const response = await fetch(
-      `https://inotebook-server.onrender.com/api/notes/deletenote/${id}`,
-      {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          "auth-token": localStorage.getItem("token"),
-        },
-      }
-    );
+    const response = await fetch(`${API_BASE_URL}/api/notes/deletenote/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": localStorage.getItem("token"),
+      },
+    });
 
     const json = await response.json();
     console.log(json);
@@ -71,18 +63,15 @@ const NoteState = (props) => {
 
   //edit a note
   const editNote = async (id, title, description, tag) => {
-    const response = await fetch(
-      `https://inotebook-server.onrender.com/api/notes/updatenote/${id}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          "auth-token": localStorage.getItem("token"),
-        },
+    const response = await fetch(`${API_BASE_URL}/api/notes/updatenote/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": localStorage.getItem("token"),
+      },
 
-        body: JSON.stringify({ title, description, tag }),
-      }
-    );
+      body: JSON.stringify({ title, description, tag }),
+    });
     const json = await response.json();
     console.log(json);
 
