@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { API_BASE_URL } from "../utils/constant";
 
@@ -32,6 +32,12 @@ function SignUp(props) {
       });
     }
   };
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      history("/");
+    }
+  }, []);
 
   const handleClick = async (e) => {
     const { email, name, password, cpassword } = credentials;

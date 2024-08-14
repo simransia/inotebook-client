@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { API_BASE_URL } from "../utils/constant";
 
@@ -22,6 +22,12 @@ function Login(props) {
       showPassword: !credentials.showPassword,
     });
   };
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      history("/");
+    }
+  }, []);
 
   const handleClick = async () => {
     const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
